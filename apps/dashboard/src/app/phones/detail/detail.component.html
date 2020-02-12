@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title *ngIf="selectedPhone.id; else elseCreateNew"><h1>{{ selectedPhone.title }}</h1></mat-card-title>
+    <ng-template #elseCreateNew><h1 class="border-bottom">Create a New Item</h1></ng-template>
+  </mat-card-header>
+  <form [formGroup]="form" #formDirective="ngForm" (ngSubmit)="save()">
+    <mat-card-content>
+
+      <mat-form-field class="full-width d-flex">
+        <input matInput placeholder="Name" type="text" name="title" formControlName="title">
+        <mat-error *ngIf="form.get('title').hasError('required')">Required Field</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width d-flex">
+        <textarea matInput placeholder="Details" type="text" name="details" formControlName="details"></textarea>
+        <mat-error *ngIf="form.get('details').hasError('required')">Required Field</mat-error>
+      </mat-form-field>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid">{{ selectedPhone.id ? 'Update' : 'Create' }}</button>
+      <button type="button" mat-button (click)="cancel.emit()">Cancel</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

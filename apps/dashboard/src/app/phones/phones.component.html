@@ -1,0 +1,19 @@
+
+<div class="container d-flex mt-3">
+  <div class="col-6">
+    <mdv14-list
+      [phones]="phones$ | async"
+      [selectedPhone]="phone$ | async"
+      (selectPhone)="selectPhone($event)"
+      (deletePhone)="deletePhone($event)"
+    ></mdv14-list>
+  </div>
+
+  <div class="col-6">
+    <mdv14-detail
+      [selectedPhone]="phone$ | async"
+      (cancel)="reset()"
+      (savePhone)="savePhone($event)"
+    ></mdv14-detail>
+  </div>
+</div>
